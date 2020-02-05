@@ -20,15 +20,15 @@ bool button2_pushed; //flag to store button2 input
 */
 void monitorInput()
 {
-  if(SensorValue(button1) && !button1_pushed)
-  {
-    button1_pushed = true;
-  }
+	if(SensorValue(button1) && !button1_pushed)
+	{
+		button1_pushed = true;
+	}
 
-  if(SensorValue(button2) && !button2_pushed)
-  {
-    button2_pushed = true;
-  }
+	if(SensorValue(button2) && !button2_pushed)
+	{
+		button2_pushed = true;
+	}
 }
 
 void exercise_1()
@@ -87,66 +87,66 @@ void exercise_2()
 
 	T_test_state test_state = state1;
 
-  while(true)
-  {
-    monitorInput();
+	while(true)
+	{
+		monitorInput();
 
-		  /* INSERT CODE HERE
-		  * - Make sure EXERCISE_NUMBER is set to 2
-		  */
-		  switch(test_state){
+		/* INSERT CODE HERE
+		* - Make sure EXERCISE_NUMBER is set to 2
+		*/
+		switch(test_state){
 
-		  case state1:
+		case state1:
 
-		  resetMotorEncoder(motor1);
-		  motor[motor1] = 0;
-		  if(button1_pushed == true){
-		  	test_state = state2
-		  	button1_pushed = false;
-		  }
-		  break;
+			resetMotorEncoder(motor1);
+			motor[motor1] = 0;
+			if(button1_pushed == true){
+				test_state = state2
+				button1_pushed = false;
+			}
+			break;
 
-		  case state2:
+		case state2:
 
-		  motor[motor1] = 50;
-		  if(getMotorEncoder(motor1) >= 627){
+			motor[motor1] = 50;
+			if(getMotorEncoder(motor1) >= 627){
 
-		  	test_state = state1;
+				test_state = state1;
 
-		  }
-		  if(button1_pushed == true){
-		  	button1_pushed = false;
-		  }
-		  break;
-
-
-		  }
+			}
+			if(button1_pushed == true){
+				button1_pushed = false;
+			}
+			break;
 
 
-    }// end while
+		}
+
+
+	}// end while
 
 } // end exercise_2
 
 void exercise_3()
 {
 	enum T_test_state{
-				stopped = 0,
-				forward,
-				backward,
-			};
-			T_test_state exer3_state = stopped;
+		stopped = 0,
+		forward,
+		backward,
+	};
+	T_test_state exer3_state = stopped;
 	while(true)
 	{
-	  monitorInput();
+		monitorInput();
 
 
-      /* INSERT CODE HERE
-      * - make sure EXERCISE_NUMBER is set to 3
-		  */
+		/* INSERT CODE HERE
+		* - make sure EXERCISE_NUMBER is set to 3
+		*/
 
-			switch(exer3_state){
+		switch(exer3_state){
 
-			case stopped:
+		case stopped:
 
 			motor[motor1] = 0;
 			resetMotorEncoder(motor1);
@@ -161,36 +161,57 @@ void exercise_3()
 
 			break;
 
-			case forward:
-			resetMotorEncoder(motor1);
+		case forward:
+			//resetMotorEncoder(motor1);
 			motor[motor1] = 50;
 
 			if(button1_pushed == true){
 				button1_pushed = false;
 			}
 
-			if(button2_pushed == true){
-					 //check this out
-			}
+		/*	if(button2_pushed == true){
+				//check this out
+				exer3_state = backward;
+			}*/
 
 			if(getMotorEncoder(motor1) >= 3000){
 
-			if(button2_pushed == true){
-				exer3_state = backward;
-				button2_pushed = false;
-			}else{
+				if(button2_pushed == true){
+					exer3_state = backward;
+					button2_pushed = false;
+					}else{
+						exer3_state = stopped;
 
-			exer3_state = stopped;
-			button2_pushed = false;
-			}
+						button1_pushed = false;
+				}
 
+				ResetMotorEncoder(motor1);
 			}
 			button1_pushed = false;
 			break;
 
+			case backward:
+
+			motor[motor1] = -50;
+			if(button2_pushed == true){
+				button2_pushed = false;
 			}
 
-  }//end while
+			if(getMotorEncoder(motor1) >= 3000){
+				if(button1_pushed == true){
+					exer3_state = forward;
+					button1_pushed = false;
+				}else{
+					exer3_state = stopped;
+				}
+				resetMotorEncoder(motor1);
+			}
+			button2_pushed = false;
+			break;
+
+		}
+
+	}//end while
 
 }//end exercse_3
 
@@ -200,17 +221,17 @@ task main()
 	button1_pushed = button2_pushed = false;
 
 	switch (EXERCISE_NUMBER)
-  {
-     case 1:
-       exercise_1();
-       break;
-     case 2:
-       exercise_2();
-       break;
-     case 3:
-       exercise_3();
-       break;
-     default: //should never get here.
-   } // end switch
+	{
+	case 1:
+		exercise_1();
+		break;
+	case 2:
+		exercise_2();
+		break;
+	case 3:
+		exercise_3();
+		break;
+	default: //should never get here.
+	} // end switch
 
 }// end main

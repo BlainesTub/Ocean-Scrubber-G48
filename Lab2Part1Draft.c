@@ -20,15 +20,15 @@ bool button2_pushed; //flag to store button2 input
 */
 void monitorInput()
 {
-  if(SensorValue(button1) && !button1_pushed)
-  {
-    button1_pushed = true;
-  }
+	if(SensorValue(button1) && !button1_pushed)
+	{
+		button1_pushed = true;
+	}
 
-  if(SensorValue(button2) && !button2_pushed)
-  {
-    button2_pushed = true;
-  }
+	if(SensorValue(button2) && !button2_pushed)
+	{
+		button2_pushed = true;
+	}
 }
 
 void exercise_1()
@@ -87,41 +87,43 @@ void exercise_2()
 	int MotorPos = getMotorEncoder(motor1); //Motor Position
 	T_MotorState MotorState = MotorOff;
 
-  while(true)
-  {
-    monitorInput();
-
-		  /* INSERT CODE HERE
-		  * - Make sure EXERCISE_NUMBER is set to 2
-		  */
-
-
-		  switch(MotorState){
-		  	case MotorOff:
-		  		motor[motor1] = 0;
-		  		if(button1_pushed){
-		  			MotorState = MotorOn;
-		  			button1_pushed = false;
-		  		}
-		  		break;
-
-
-		  	case MotorOn:
-		  		//Turn the motor on
-		  		while(MotorPos <= 627){    //Run until the encoder reads 627 or greater
-		  			motor[motor1] = 50;
-		  		}
-		  		MotorState = MotorOff;
-		  		break;
-					default:
-				}
+	while(true)
+	{
+		monitorInput();
 
 
 
+		/* INSERT CODE HERE
+		* - Make sure EXERCISE_NUMBER is set to 2
+		*/
+
+
+		switch(MotorState){
+		case MotorOff:
+			motor[motor1] = 0;
+			if(button1_pushed){
+				MotorState = MotorOn;
+				button1_pushed = false;
+			}
+			break;
+
+
+		case MotorOn:
+			//Turn the motor on
+			while(MotorPos <= 627){    //Run until the encoder reads 627 or greater
+				motor[motor1] = 50;
+			}
+			MotorState = MotorOff;
+			break;
+		default:
+		}
 
 
 
-    }// end while
+
+
+
+	}// end while
 
 } // end exercise_2
 
@@ -129,15 +131,17 @@ void exercise_3()
 {
 	while(true)
 	{
-	  monitorInput();
+		monitorInput();
 
 
-      /* INSERT CODE HERE
-      * - make sure EXERCISE_NUMBER is set to 3
-		  */
+		/* INSERT CODE HERE
+		* - make sure EXERCISE_NUMBER is set to 3
+		*/
+		ksdjfhgkjlsdhfgkjsdhfg
+		sdhfgjksdhfgkjlsdh
+		kjdsfghskldjfhgjksdl
 
-
-  }//end while
+	}//end while
 
 }//end exercse_3
 
@@ -147,17 +151,17 @@ task main()
 	button1_pushed = button2_pushed = false;
 
 	switch (EXERCISE_NUMBER)
-  {
-     case 1:
-       exercise_1();
-       break;
-     case 2:
-       exercise_2();
-       break;
-     case 3:
-       exercise_3();
-       break;
-     default: //should never get here.
-   } // end switch
+	{
+	case 1:
+		exercise_1();
+		break;
+	case 2:
+		exercise_2();
+		break;
+	case 3:
+		exercise_3();
+		break;
+	default: //should never get here.
+	} // end switch
 
 }// end main

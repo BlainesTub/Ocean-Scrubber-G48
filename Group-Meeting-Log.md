@@ -36,5 +36,5 @@ Numbered Lists!
 
 ### February 4th, 2020
 #### Tasks
-- [ ] Complete Exercise 2
-- [ ] Complete Exercise 3
+[ ] Complete Exercise 2
+[ ] Complete Exercise 3

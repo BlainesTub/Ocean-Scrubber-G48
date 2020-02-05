@@ -21,8 +21,8 @@ We can also incorporate [links] (google.com)
 
 Lists
 - One
--Two 
--Three
+- Two 
+- Three
 
 Numbered Lists!
 1. One 
@@ -36,5 +36,5 @@ Numbered Lists!
 
 ### February 4th, 2020
 #### Tasks
-- [] Complete Exercise 2
-- [] Complete Exercise 3
+- [X] Complete Exercise 2
+- [ ] Complete Exercise 3

@@ -1,9 +1,9 @@
-#Group Meeting Log
-##Formatting Cheat sheet
+# Group Meeting Log
+## Formatting Cheat sheet
 
-###Smaller Heading
-####Smaller heading
-#####Smaller heading
+### Smaller Heading
+#### Smaller heading
+##### Smaller heading
 
 **Bold Text**
 *Italics*
@@ -28,3 +28,13 @@ Numbered Lists!
 1. One 
 2. Two
 3. Three
+
+
+
+
+# Group Meeting Log
+
+### February 4th, 2020
+#### Tasks
+- [] Complete Exercise 2
+- [] Complete Exercise 3

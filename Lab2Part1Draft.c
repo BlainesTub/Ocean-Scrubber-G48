@@ -137,7 +137,9 @@ void exercise_3()
 		/* INSERT CODE HERE
 		* - make sure EXERCISE_NUMBER is set to 3
 		*/
-
+		ksdjfhgkjlsdhfgkjsdhfg
+		sdhfgjksdhfgkjlsdh
+		kjdsfghskldjfhgjksdl
 
 	}//end while
 

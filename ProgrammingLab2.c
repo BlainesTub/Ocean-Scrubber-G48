@@ -197,7 +197,7 @@ void exercise_3()
 				button2_pushed = false;
 			}
 
-			if(getMotorEncoder(motor1) >= 3000){
+			if(getMotorEncoder(motor1) <= -3000){
 				if(button1_pushed == true){
 					exer3_state = forward;
 					button1_pushed = false;

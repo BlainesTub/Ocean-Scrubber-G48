@@ -96,6 +96,7 @@ void exercise_2()
 		*/
 		switch(test_state){
 
+<<<<<<< HEAD
 		case state1: //state1 is the stopped state
 
 			resetMotorEncoder(motor1); //We reset the motor to 0 so when it goes to different states it
@@ -104,6 +105,15 @@ void exercise_2()
 			if(button1_pushed == true){// If button 1 is pushed
 				test_state = state2			 // it goes into state2 which is forward
 				button1_pushed = false;  // say button 1 is no longer
+=======
+		case state1:
+
+			resetMotorEncoder(motor1);
+			motor[motor1] = 0;
+			if(button1_pushed == true){
+				test_state = state2;
+				button1_pushed = false;
+>>>>>>> b7066b27547ee87be41966d449059c262df3ee57
 			}
 			break;
 
@@ -132,12 +142,12 @@ void exercise_2()
 
 void exercise_3()
 {
-	enum T_test_state{
+	enum T_test_state{          //Initialize 3 states
 		stopped = 0,
 		forward,
 		backward,
 	};
-	T_test_state exer3_state = stopped;
+	T_test_state exer3_state = stopped;     //Set initial state to "stopped"
 	while(true)
 	{
 		monitorInput();
@@ -149,27 +159,26 @@ void exercise_3()
 
 		switch(exer3_state){
 
-		case stopped:
+		case stopped:                            //Stopped Case
 
-			motor[motor1] = 0;
-			resetMotorEncoder(motor1);
+			motor[motor1] = 0;                     //Set speed to 0
+			resetMotorEncoder(motor1);             //Zero the motor encoder
 			if(button1_pushed == true){
-				exer3_state = forward;
-				button1_pushed = false;
+				exer3_state = forward;               //Change state to forward when button 1 pushed
+				button1_pushed = false;              //debounce button1
 			}
 			if(button2_pushed == true){
-				exer3_state = backward;
-				button2_pushed = false;
+				exer3_state = backward;             //Change state fo backwards when button 2 pushed
+				button2_pushed = false;							//debounce button2
 			}
 
 			break;
 
 		case forward:
-			//resetMotorEncoder(motor1);
-			motor[motor1] = 50;
+			motor[motor1] = 50;										//Set motor speed to 50
 
 			if(button1_pushed == true){
-				button1_pushed = false;
+				button1_pushed = false;             //If button 1 is pushed again, disregard
 			}
 
 		/*	if(button2_pushed == true){
@@ -177,39 +186,39 @@ void exercise_3()
 				exer3_state = backward;
 			}*/
 
-			if(getMotorEncoder(motor1) >= 3000){
+			if(getMotorEncoder(motor1) >= 3000){      //When the motor position <= 3000
 
 				if(button2_pushed == true){
-					exer3_state = backward;
-					button2_pushed = false;
+					exer3_state = backward;               //When forwards motion is complete, go backwards
+					button2_pushed = false;               //Debounce button 2
 					}else{
-						exer3_state = stopped;
+						exer3_state = stopped;              //If no other input, set state to stopped
 
-						button1_pushed = false;
+						button1_pushed = false;             //Debounce button1
 				}
 
-				ResetMotorEncoder(motor1);
+				resetMotorEncoder(motor1);
 			}
 			button1_pushed = false;
 			break;
 
 			case backward:
 
-			motor[motor1] = -50;
+			motor[motor1] = -50;                      //Spin motor backwards
 			if(button2_pushed == true){
-				button2_pushed = false;
+				button2_pushed = false;                 //If button 2 is pushed again, disregard
 			}
 
-			if(getMotorEncoder(motor1) <= -3000){
+			if(getMotorEncoder(motor1) <= -3000){     //Spin until motor position is -3000
 				if(button1_pushed == true){
-					exer3_state = forward;
-					button1_pushed = false;
+					exer3_state = forward;                //When backwards motion complete, go forwards
+					button1_pushed = false;               //Debounce button 1
 				}else{
-					exer3_state = stopped;
+					exer3_state = stopped;                //If no other input, set state to stop
 				}
 				resetMotorEncoder(motor1);
 			}
-			button2_pushed = false;
+			button2_pushed = false;                   //Debounce button2
 			break;
 
 		}

@@ -96,26 +96,29 @@ void exercise_2()
 		*/
 		switch(test_state){
 
-		case state1:
+		case state1: //state1 is the stopped state
 
-			resetMotorEncoder(motor1);
-			motor[motor1] = 0;
-			if(button1_pushed == true){
-				test_state = state2
-				button1_pushed = false;
+			resetMotorEncoder(motor1); //We reset the motor to 0 so when it goes to different states it
+																 //measures it's position from this point.
+			motor[motor1] = 0;         // Set the speed to 0.
+			if(button1_pushed == true){// If button 1 is pushed
+				test_state = state2			 // it goes into state2 which is forward
+				button1_pushed = false;  // say button 1 is no longer
 			}
 			break;
 
 		case state2:
-
-			motor[motor1] = 50;
-			if(getMotorEncoder(motor1) >= 627){
+																 // state2 is forward
+			motor[motor1] = 50;        // set the speed of the motor to 50
+			if(getMotorEncoder(motor1) >= 627){  //if the position is more than 627 ( one rotation )
+																					 //then set the state to state1 (stopped)
 
 				test_state = state1;
 
 			}
 			if(button1_pushed == true){
-				button1_pushed = false;
+				button1_pushed = false;    //if button1 is pushed while its moving, we don't want it to do anything so
+																	 // we just say button 1 isnt pushed
 			}
 			break;
 

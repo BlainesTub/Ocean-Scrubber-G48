@@ -10,7 +10,7 @@
 bool button1_pushed; //flag to store button1 input
 bool button2_pushed; //flag to store button2 input
 
-
+#define EXERCISE_NUMBER 	1
 /* monitorInput()
 *
 *  Used to flag button inputs
@@ -35,6 +35,9 @@ void monitorInput()
 
 
 void MoveForwards(int TargetDistance, int Speed){
+	resetMotorEncoder(motor1);
+	resetMotorEncoder(motor2);
+
 	int motor1Pos = getMotorEncoder(motor1);
 	int motor2Pos = getMotorEncoder(motor2);
 	motor[motor1] = Speed;                    //Turn on both motors
@@ -48,15 +51,18 @@ void MoveForwards(int TargetDistance, int Speed){
 }
 
 void Turn(int TargetArc, int Speed){     //Positive TargetArc is CounterClockwise. motor1 = Left, Motor2 = Right
+	resetMotorEncoder(motor1);
+	resetMotorEncoder(motor2);
+
 	int motor1Pos = getMotorEncoder(motor1);
 	int motor2Pos = getMotorEncoder(motor2);
 	motor[motor1] = Speed;
 	motor[motor2] = -Speed;
 
 	if(motor1Pos >= TargetArc){
-	motor[motor1] = 0;
-	motor[motor2] = 0;
-	button2_pushed = false;
+		motor[motor1] = 0;
+		motor[motor2] = 0;
+		button2_pushed = false;
 	}
 }
 
@@ -109,9 +115,9 @@ void exercise_3()
 				button1_pushed = false;             //If button 1 is pushed again, disregard
 			}
 
-		/*	if(button2_pushed == true){
-				//check this out
-				exer3_state = backward;
+			/*	if(button2_pushed == true){
+			//check this out
+			exer3_state = backward;
 			}*/
 
 			if(getMotorEncoder(motor1) >= 3000){      //When the motor position <= 3000
@@ -120,9 +126,9 @@ void exercise_3()
 					exer3_state = backward;               //When forwards motion is complete, go backwards
 					button2_pushed = false;               //Debounce button 2
 					}else{
-						exer3_state = stopped;              //If no other input, set state to stopped
+					exer3_state = stopped;              //If no other input, set state to stopped
 
-						button1_pushed = false;             //Debounce button1
+					button1_pushed = false;             //Debounce button1
 				}
 
 				resetMotorEncoder(motor1);
@@ -130,7 +136,7 @@ void exercise_3()
 			button1_pushed = false;
 			break;
 
-			case backward:
+		case backward:
 
 			motor[motor1] = -50;                      //Spin motor backwards
 			if(button2_pushed == true){
@@ -141,7 +147,7 @@ void exercise_3()
 				if(button1_pushed == true){
 					exer3_state = forward;                //When backwards motion complete, go forwards
 					button1_pushed = false;               //Debounce button 1
-				}else{
+					}else{
 					exer3_state = stopped;                //If no other input, set state to stop
 				}
 				resetMotorEncoder(motor1);
@@ -159,13 +165,13 @@ void exercise_3()
 
 task main()
 {
-	if(button1_pushed){
+	switch (EXERCISE_NUMBER)
+	{
+	case 1:
 		MoveForwards(1000, 50);
-	}
+		break;
 
-	if(button2_pushed){
-		Turn(1000, 50);
-	}
-
+	default: //should never get here.
+	} // end switch
 
 }

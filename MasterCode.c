@@ -63,7 +63,7 @@ void RobotOperation()
 		switch(exer3_state){
 
 		case stopped:                            //Stopped Case
-			writeDebugStream("Stopped[%d]\n",time1[T1]);
+			//writeDebugStream("Stopped[%d]\n",time1[T1]);
 			motor[imeLeft] = 0;										//Set motor speed to 50
 			motor[imeRight] = 0;
 			motor[motorLeft] = 0;
@@ -88,7 +88,7 @@ void RobotOperation()
 		int motorpos = getMotorEncoder(imeRight);
 			writeDebugStream("Forwards, (%d)\n", motorpos);
 			int speed = 30;
-			int TargetDistance = 1500;
+			int TargetDistance = 1400;
 			int TurnArc = 500;
 			motor[imeLeft] = speed;										//Set motor speed to 50
 			motor[imeRight] = .8*speed;

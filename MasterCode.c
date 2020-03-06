@@ -139,11 +139,11 @@ void RobotOperation()
 
 		case winch:
 		writeDebugStream("case winch!");
-			motor[motorLeft] = -127;
+			motor[winch] = -127;
 			wait1Msec(3400); //
-			motor[motorLeft] = 127;
+			motor[winch] = 127;
 			wait1Msec(3200);
-			motor[motorLeft] = 0;
+			motor[winch] = 0;
 			winchswitch_pushed = false;
 			exer3_state = stopped;
 
